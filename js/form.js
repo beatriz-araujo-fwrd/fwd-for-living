@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+export function form() {
 
     // Form validation
     if (document.querySelector('.section_contact_form')) {
@@ -38,15 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
         input.addEventListener('change', () => {
             // Remove selected class from all s_cfo_radio elements
             document.querySelectorAll('.s_cfo_radio').forEach((radio) => {
-            radio.classList.remove('selected');
+                radio.classList.remove('selected');
             });
 
             // Add selected class to the parent .s_cfo_radio of the checked input
             const parent = input.closest('.s_cfo_radio');
             if (parent) {
-            parent.classList.add('selected');
+                parent.classList.add('selected');
             }
         });
     });
 
-});
+    console.log("running footer()");
+}

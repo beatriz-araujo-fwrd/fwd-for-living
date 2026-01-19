@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+export function mainInit() {
 
     // LENIS
     window.lenis = new Lenis(); // globally available
@@ -36,11 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
         delay: .1,
         duration: .5,
         ease: "power2.out",
-        onComplete: ()=> {
+        onComplete: () => {
             document.querySelector('.preloader').remove();
         }
     });
 
-});
-
-console.log("running relume scripts");
+    console.log("running mainInit()");
+}

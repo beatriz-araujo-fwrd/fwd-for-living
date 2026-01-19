@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+export function navBarMenu() {
+
     // ---------------------------------------
     // NAV MENU
     const trigger = document.querySelector('#menu-trigger');
@@ -271,8 +272,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // when the user hovers a link on the right side, 
     // the image on the left of the submenu should change
     //
-    const links  = document.querySelectorAll(".item_list_dropdown");
-    const box    = document.getElementById("submenu-image");
+    const links = document.querySelectorAll(".item_list_dropdown");
+    const box = document.getElementById("submenu-image");
     const layers = box ? box.querySelectorAll(".col_img") : [];
 
     if (!links.length || layers.length < 2) return;
@@ -286,13 +287,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const next = active ^ 1;           // toggle 0/1
         const nextImg = layers[next];
-        const curImg  = layers[active];
+        const curImg = layers[active];
 
         const reveal = () => {
-        nextImg.classList.add("show");   // fade in next
-        curImg.classList.remove("show"); // fade out current
-        active = next;
-        cache.set("current", url);
+            nextImg.classList.add("show");   // fade in next
+            curImg.classList.remove("show"); // fade out current
+            active = next;
+            cache.set("current", url);
         };
 
         // set src and wait for load to avoid any gap
@@ -300,22 +301,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Prefer decode() for instant-ready swap when possible
         if ("decode" in nextImg) {
-        nextImg.decode().then(() => {
-            cache.set(url, true);
-            reveal();
-        }).catch(() => {
-            // fallback if decode fails (SVG, etc.)
-            nextImg.addEventListener("load", () => { cache.set(url, true); reveal(); }, { once: true });
-        });
+            nextImg.decode().then(() => {
+                cache.set(url, true);
+                reveal();
+            }).catch(() => {
+                // fallback if decode fails (SVG, etc.)
+                nextImg.addEventListener("load", () => { cache.set(url, true); reveal(); }, { once: true });
+            });
         } else {
-        nextImg.addEventListener("load", () => { cache.set(url, true); reveal(); }, { once: true });
+            nextImg.addEventListener("load", () => { cache.set(url, true); reveal(); }, { once: true });
         }
     }
 
     // Hover bindings
     links.forEach(link => {
         link.addEventListener("mouseenter", () => {
-        crossfade(link.getAttribute("data-img"));
+            crossfade(link.getAttribute("data-img"));
         });
     });
 
@@ -328,5 +329,5 @@ document.addEventListener("DOMContentLoaded", function () {
         cache.set("current", first);
     }
 
-
-});
+    console.log("running navBarMenu()");
+}

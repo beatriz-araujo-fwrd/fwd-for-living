@@ -1,10 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
+export function footerDate() {
     // Set dynamic date in Footer Components
     let spanInstances = document.querySelectorAll(".current-year");
 
-    if(spanInstances) {
+    if (spanInstances) {
         spanInstances.forEach((span) => {
             span.innerHTML = new Date().getFullYear();
         });
     }
-});
+
+    console.log("running footerDate()");
+}
