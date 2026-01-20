@@ -1,4 +1,14 @@
 @import url('menu.css');
 @import url('form.css');
 @import url('faqs.css');
-@import url('form-multistep-calendly.css');
+
+/* Text selection highlight */
+::selection {
+    background-color: #B65234;
+    color: white;
+}
+
+::-moz-selection {
+    background-color: #B65234;
+    color: white;
+}
