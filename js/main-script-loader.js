@@ -4,7 +4,7 @@ import { navBarMenu } from './menu.js';
 import { form } from './form.js';
 import { footerDate } from './footer-date.js';
 
-console.log("This is coming from the main-script-loader.js");
+console.log("v1 UPDATE TEST: This is coming from the main-script-loader.js");
 
 testScript();
 mainInit();
