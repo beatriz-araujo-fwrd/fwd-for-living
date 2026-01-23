@@ -2,6 +2,19 @@
 *   Homepage Works Swiper
 */
 
+.swiper-slide.hp_works_slide {
+    --swiper-wrapper-transition-timing-function: linear !important;
+}
+
 .swiper-slide.hp_works_slide:hover {
     width: 35rem !important;
+}
+
+.swiper-slide.hp_works_slide:hover .hp_works_slide_title_wrapper,
+.swiper-slide.hp_works_slide:hover .hp_works_title_full {
+    opacity: 1;
+}
+
+.swiper-slide.hp_works_slide:hover .hp_works_title_initials {
+    opacity: 0;
 }
