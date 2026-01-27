@@ -13,3 +13,28 @@
     background-color: #B65234;
     color: white;
 }
+
+/*
+*   HERO CONTENT
+*/
+
+.section_hero_followup_content_card .for-living-display-text {
+    transform: translate(-1rem, 0);
+}
+
+.section_hero_followup_content_card .for-living-display-text:nth-child(1) {
+    transform: translate(1rem, 0);
+}
+
+.section_hero_followup_content_card:hover .for-living-display-text,
+.section_hero_followup_content_card.active .for-living-display-text {
+    opacity: 1;
+    transform: translate(0rem, 0);
+}
+
+@media screen and (max-width: 767px) {
+    .section_hero_followup_content_card.active {
+        max-width: 100%;
+        aspect-ratio: 345 / 263;
+    }
+}
