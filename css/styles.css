@@ -106,3 +106,46 @@
         }
     }
 }
+
+
+/*
+*   BUTTONS
+*/
+/* PRIMARY */
+.button:hover,
+.button-outline:hover {
+    transition: all .35s ease;
+}
+
+.button:hover {
+    background-color: rgba(0,0,0,.5);
+}
+
+.button.is-alternate:hover {
+    background-color: rgba(255,255,255,.5);
+}
+
+.button-outline:hover {
+    border-color: rgba(0,0,0,1);
+}
+
+.button-outline.is-alternate:hover {
+    border-color: rgba(255,255,255,1);
+}
+
+/* SECONDARY */
+.button.is-secondary:hover {
+    background-color: #dcdcdc;
+}
+
+.button-outline.is-secondary:hover {
+    background-color: #969696;
+}
+
+.button.is-secondary.is-alternate:hover {
+    background-color: #1A1A1A;
+}
+
+.button-outline.is-secondary.is-alternate:hover {
+    background-color: #5E5E5E;
+}
