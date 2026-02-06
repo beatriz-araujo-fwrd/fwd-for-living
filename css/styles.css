@@ -149,3 +149,15 @@
 .button-outline.is-secondary.is-alternate:hover {
     background-color: #5E5E5E;
 }
+
+
+/*
+*   SERVICES
+*/
+.step-row.active {
+    opacity: 1;
+}
+
+.pj_step_desc.active {
+    opacity: 1;
+}

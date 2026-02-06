@@ -31,6 +31,74 @@ export function mainInit() {
         });
     }
 
+
+    // SERVICES PAGE - Project Rows
+    const pjStepsRows = document.querySelectorAll('.step-row');
+    const pjStepsContainer = document.querySelector('.project-step-container-2');
+    const pjDescList = document.querySelectorAll('.pj_step_desc');
+
+    if (pjStepsContainer && pjStepsRows.length > 0 && pjDescList.length > 0) {
+        pjStepsRows.forEach((row, i) => {
+            ScrollTrigger.create({
+                trigger: row,
+                start: 'top 35%',
+                end: 'bottom 35%',
+                onEnter: () => {
+                    let currentActiveRow = document.querySelector('.step-row.active');
+                    let currentActiveDesc = document.querySelector('.pj_step_desc.active');
+                    // just to make sure there are no more than 1 row with the .active class
+                    if (currentActiveRow) {
+                        currentActiveRow.classList.remove('active');
+                    }
+                    //apply same logic to desc container
+                    if (currentActiveDesc) {
+                        currentActiveDesc.classList.remove('active');
+                    }
+                    row.classList.add('active');
+                    pjDescList[i].classList.add('active');
+                },
+                onLeave: () => {
+                    row.classList.remove('active');
+                },
+                onEnterBack: () => {
+                    let currentActiveRow = document.querySelector('.step-row.active');
+                    let currentActiveDesc = document.querySelector('.pj_step_desc.active');
+                    if (currentActiveRow) {
+                        currentActiveRow.classList.remove('active');
+                    }
+                    if (currentActiveDesc) {
+                        currentActiveDesc.classList.remove('active');
+                    }
+                    row.classList.add('active');
+                    pjDescList[i].classList.add('active');
+                },
+                onLeaveBack: () => {
+                    row.classList.remove('active');
+                }
+            });
+        });
+
+        // rows slide-in and ruller scroll effect
+        gsap.from('.step-name', {
+            scrollTrigger: {
+                trigger: pjStepsContainer,
+                start: 'top bottom',
+                end: 'bottom 35%',
+                scrub: true,
+                markers: true,
+                onUpdate: ()=> {
+                    // ADD INDEX TRUNCATION HERE BASED ON PROGRESS AND # OF RULER MARKERS
+                },
+                onEnter: ()=> {
+                    // ADD .pj_step_context_container VISIBILITY HANDLERS HERE
+                }
+            },
+            paddingLeft: '100rem',
+            stagger: .05,
+            ease: 'power2.out'
+        });
+    }
+
     // RULER EFFECT (WORK PAGE)
     const filterItems = document.querySelectorAll('.filter_item');
     const filterInner = document.querySelector('.filter_ruler_inner');
