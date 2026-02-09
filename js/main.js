@@ -85,7 +85,7 @@ export function mainInit() {
                 start: 'top bottom',
                 end: 'bottom 35%',
                 scrub: true,
-                markers: true,
+                // markers: true,
                 onUpdate: ()=> {
                     // ADD INDEX TRUNCATION HERE BASED ON PROGRESS AND # OF RULER MARKERS
                 },
@@ -143,11 +143,11 @@ export function mainInit() {
                 currentX += direction * indexSpace * distanceToNextTag;
 
                 console.log("separated by ", indexSpace);
-                gsap.to(filterInner, {
-                    x: currentX,
-                    duration: .8,
-                    ease: 'power2.out'
-                });
+                // gsap.to(filterInner, {
+                //     x: currentX,
+                //     duration: .8,
+                //     ease: 'power2.out'
+                // });
 
                 // update active index
                 activeIndex = index;
