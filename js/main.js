@@ -32,7 +32,38 @@ export function mainInit() {
     }
 
 
-    // SERVICES PAGE - Project Rows
+    // SERVICES PAGE 
+    // - Hero Reveal
+    const imgOverlayContainer = document.querySelector('.header32_background-image-wrapper.overlay-reveal');
+
+    if (imgOverlayContainer) {
+        gsap.to(imgOverlayContainer, {
+            delay: .4,
+            clipPath: 'polygon(25% 90%, 75% 90%, 75% 100%, 25% 100%)',
+            duration: .5,
+            ease: 'power2.out'
+        });
+        
+        setTimeout(() => {
+            gsap.fromTo(imgOverlayContainer, {
+                clipPath: 'polygon(25% 90%, 75% 90%, 75% 100%, 25% 100%)',
+            },{
+                scrollTrigger: {
+                    trigger: '.services_hero_section',
+                    pin: true,
+                    start: 'top top',
+                    end: '+=200%',
+                    scrub: true,
+                },
+                immediateRender: false,
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+                duration: 1,
+                ease: 'power2.out'
+            })
+        }, 600);
+    }
+
+    // - Project Rows
     const pjStepsRows = document.querySelectorAll('.step-row');
     const pjStepsContainer = document.querySelector('.project-step-container-2');
     const pjDescList = document.querySelectorAll('.pj_step_desc');
