@@ -154,6 +154,14 @@
 /*
 *   SERVICES
 */
+/* HERO SECTION */
+.header32_background-image-wrapper.overlay-reveal {
+    clip-path: polygon(25% 100%, 75% 100%, 75% 100%, 25% 100%);
+    transform-origin: center center;
+}
+
+
+/* STEPS SECTION */
 .step-row.active {
     opacity: 1;
 }
