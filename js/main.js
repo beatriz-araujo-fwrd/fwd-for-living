@@ -69,65 +69,123 @@ export function mainInit() {
     const pjDescList = document.querySelectorAll('.pj_step_desc');
 
     if (pjStepsContainer && pjStepsRows.length > 0 && pjDescList.length > 0) {
-        pjStepsRows.forEach((row, i) => {
+
+        const pjRulerMarks = document.querySelectorAll('.ruler_marker-2');
+        const totalMarks = pjRulerMarks.length;
+        const pjContext = document.querySelector('.pj_step_context_container');
+
+        let rowVisibilityEnd = 'bottom 25%';
+        let rulerStart = 'top 25%';
+
+        setTimeout(() => {
+            pjStepsRows.forEach((row, i) => {
+
+                // rows active
+                ScrollTrigger.create({
+                    trigger: row,
+                    start: () => {
+                        if (window.innerWidth <= 991) { rulerStart = 'top 50%' } else { rulerStart = 'top 25%'; }
+                        return rulerStart;
+                    },
+                    end: () => {
+                        if (window.innerWidth <= 991) { rowVisibilityEnd = 'bottom 50%' } else { rowVisibilityEnd = 'bottom 25%' }
+                        return rowVisibilityEnd
+                    },
+                    // markers: true,
+                    scrub: true,
+                    onEnter: () => {
+                        let currentActiveRow = document.querySelector('.step-row.active');
+                        let currentActiveDesc = document.querySelector('.pj_step_desc.active');
+                        // just to make sure there are no more than 1 row with the .active class
+                        if (currentActiveRow) {
+                            currentActiveRow.classList.remove('active');
+                        }
+                        //apply same logic to desc container
+                        if (currentActiveDesc) {
+                            currentActiveDesc.classList.remove('active');
+                        }
+                        row.classList.add('active');
+                        pjDescList[i].classList.add('active');
+                    },
+                    onLeave: () => {
+                        row.classList.remove('active');
+                        row.classList.add('mobile-hidden');
+                        console.log("ON LEAVE")
+                    },
+                    onEnterBack: () => {
+                        let currentActiveRow = document.querySelector('.step-row.active');
+                        let currentActiveDesc = document.querySelector('.pj_step_desc.active');
+                        if (currentActiveRow) {
+                            currentActiveRow.classList.remove('active');
+                        }
+                        if (currentActiveDesc) {
+                            currentActiveDesc.classList.remove('active');
+                        }
+                        row.classList.add('active');
+                        row.classList.remove('mobile-hidden');
+                        pjDescList[i].classList.add('active');
+                    },
+                    onLeaveBack: () => {
+                        row.classList.remove('active');
+                    }
+                });
+
+                let slideInEnd = 'top 10%';
+
+                // rows slide-in
+                gsap.from(row.querySelector('.step-name'), {
+                    scrollTrigger: {
+                        trigger: row,
+                        start: 'top 90%',
+                        end: () => {
+                            if (window.innerWidth <= 991) { slideInEnd = 'top 25%' }
+                            return slideInEnd
+                        },
+                        scrub: true,
+                    },
+                    paddingLeft: '100rem',
+                    ease: 'power2.out'
+                });
+            });
+
+            // ruller scroll effect
             ScrollTrigger.create({
-                trigger: row,
-                start: 'top 35%',
-                end: 'bottom 35%',
+                trigger: pjStepsContainer,
+                start: () => {
+                    return rulerStart;
+                },
+                end: () => { return rowVisibilityEnd },
+                scrub: true,
+                onUpdate: (self) => {
+                    let progress = self.progress;
+                    let prevIndexItem = document.querySelector('.ruler_marker-2.active');
+                    let currentIndex = Math.round(progress * (totalMarks - 1));
+                    let currentIndexItem = pjRulerMarks[currentIndex];
+
+                    if (prevIndexItem !== currentIndexItem) {
+                        document.querySelector('.ruler_marker-2.active').classList.remove('active');
+                        pjRulerMarks[currentIndex].classList.add('active');
+                    }
+
+                },
                 onEnter: () => {
-                    let currentActiveRow = document.querySelector('.step-row.active');
-                    let currentActiveDesc = document.querySelector('.pj_step_desc.active');
-                    // just to make sure there are no more than 1 row with the .active class
-                    if (currentActiveRow) {
-                        currentActiveRow.classList.remove('active');
-                    }
-                    //apply same logic to desc container
-                    if (currentActiveDesc) {
-                        currentActiveDesc.classList.remove('active');
-                    }
-                    row.classList.add('active');
-                    pjDescList[i].classList.add('active');
-                },
-                onLeave: () => {
-                    row.classList.remove('active');
-                },
-                onEnterBack: () => {
-                    let currentActiveRow = document.querySelector('.step-row.active');
-                    let currentActiveDesc = document.querySelector('.pj_step_desc.active');
-                    if (currentActiveRow) {
-                        currentActiveRow.classList.remove('active');
-                    }
-                    if (currentActiveDesc) {
-                        currentActiveDesc.classList.remove('active');
-                    }
-                    row.classList.add('active');
-                    pjDescList[i].classList.add('active');
+                    gsap.fromTo(pjContext, {
+                        opacity: 0
+                    }, {
+                        opacity: 1,
+                        duration: .5,
+                        ease: 'power2.out'
+                    });
                 },
                 onLeaveBack: () => {
-                    row.classList.remove('active');
+                    gsap.to(pjContext, {
+                        opacity: 0,
+                        duration: .5,
+                        ease: 'power2.out'
+                    });
                 }
             });
-        });
-
-        // rows slide-in and ruller scroll effect
-        gsap.from('.step-name', {
-            scrollTrigger: {
-                trigger: pjStepsContainer,
-                start: 'top bottom',
-                end: 'bottom 35%',
-                scrub: true,
-                // markers: true,
-                onUpdate: ()=> {
-                    // ADD INDEX TRUNCATION HERE BASED ON PROGRESS AND # OF RULER MARKERS
-                },
-                onEnter: ()=> {
-                    // ADD .pj_step_context_container VISIBILITY HANDLERS HERE
-                }
-            },
-            paddingLeft: '100rem',
-            stagger: .05,
-            ease: 'power2.out'
-        });
+        }, 750);
     }
 
     // RULER EFFECT (WORK PAGE)
