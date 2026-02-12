@@ -37,17 +37,18 @@ export function mainInit() {
     const imgOverlayContainer = document.querySelector('.header32_background-image-wrapper.overlay-reveal');
 
     if (imgOverlayContainer) {
-        gsap.to(imgOverlayContainer, {
-            delay: .4,
-            clipPath: 'polygon(25% 90%, 75% 90%, 75% 100%, 25% 100%)',
-            duration: .5,
-            ease: 'power2.out'
-        });
-        
+        gsap.timeline()
+            .to(imgOverlayContainer, {
+                delay: .4,
+                clipPath: 'polygon(25% 90%, 75% 90%, 75% 100%, 25% 100%)',
+                duration: .5,
+                ease: 'power2.out'
+            });
+
         setTimeout(() => {
             gsap.fromTo(imgOverlayContainer, {
                 clipPath: 'polygon(25% 90%, 75% 90%, 75% 100%, 25% 100%)',
-            },{
+            }, {
                 scrollTrigger: {
                     trigger: '.services_hero_section',
                     pin: true,
@@ -60,7 +61,7 @@ export function mainInit() {
                 duration: 1,
                 ease: 'power2.out'
             })
-        }, 600);
+        }, 700);
     }
 
     // - Project Rows
