@@ -187,5 +187,41 @@ export function mainInit() {
 
     }
 
+    // CASE HOVER (WORK PAGE)
+    const caseListContainer = document.querySelector('.blog12_list');
+    const caseList = document.querySelectorAll('.blog12_item');
+    const seeMoreTag = document.querySelector('.see-more-text-container');
+
+    if (caseListContainer && seeMoreTag && caseList.length > 0 && window.innerWidth > 991) {
+        caseList.forEach((item) => {
+            let itemImg = item.querySelector('img');
+
+            itemImg.addEventListener('mouseover', (e) => {
+                e.stopPropagation();
+                seeMoreTag.classList.add('show');
+            });
+
+            itemImg.addEventListener('mouseout', (e) => {
+                e.stopPropagation();
+                seeMoreTag.classList.remove('show');
+            });
+        });
+
+        setTimeout(() => {
+            window.addEventListener('mousemove', (e) => {
+                let mouseX = e.clientX;
+                let mouseY = e.clientY;
+
+                gsap.to(seeMoreTag, {
+                    left: mouseX + 10,
+                    top: mouseY - 35,
+                    duration: .5,
+                    delay: .01,
+                    ease: 'power2.out'
+                });
+            });
+        }, 200);
+    }
+
     console.log("running mainInit()");
 }

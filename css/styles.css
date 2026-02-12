@@ -169,3 +169,19 @@
 .pj_step_desc.active {
     opacity: 1;
 }
+
+
+/*
+*   WORKS
+*/
+.blog12_item-link:hover img {
+    transform: scale(1.1);
+}
+
+.see-more-text-container {
+    opacity: 0;
+}
+
+.see-more-text-container.show {
+    opacity: 1;
+}
