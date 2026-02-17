@@ -92,7 +92,6 @@ export function mainInit() {
                         if (window.innerWidth <= 991) { rowVisibilityEnd = 'bottom 50%' } else { rowVisibilityEnd = 'bottom 25%' }
                         return rowVisibilityEnd
                     },
-                    // markers: true,
                     scrub: true,
                     onEnter: () => {
                         let currentActiveRow = document.querySelector('.step-row.active');
@@ -144,7 +143,11 @@ export function mainInit() {
                         },
                         scrub: true,
                     },
-                    paddingLeft: '100rem',
+                    opacity: 0,
+                    x: () => {
+                        let leftTranslate = window.innerWidth;
+                        return leftTranslate
+                    },
                     ease: 'power2.out'
                 });
             });
