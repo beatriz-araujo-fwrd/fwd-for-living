@@ -233,11 +233,15 @@ export function mainInit() {
                 currentX += direction * indexSpace * distanceToNextTag;
 
                 console.log("separated by ", indexSpace);
-                // gsap.to(filterInner, {
-                //     x: currentX,
-                //     duration: .8,
-                //     ease: 'power2.out'
-                // });
+                gsap.to(filterInner, {
+                    x: currentX,
+                    duration: .8,
+                    ease: 'power2.out'
+                });
+
+                // update tag 'active' state visiblity
+                filterItems[activeIndex].querySelector('.tag').classList.remove("active");
+                filterItems[index].querySelector('.tag').classList.add("active");
 
                 // update active index
                 activeIndex = index;
@@ -265,6 +269,7 @@ export function mainInit() {
                 seeMoreTag.classList.remove('show');
             });
         });
+    }
 
         setTimeout(() => {
             window.addEventListener('mousemove', (e) => {
