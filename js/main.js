@@ -274,10 +274,14 @@ export function mainInit() {
         });
     }
 
-        setTimeout(() => {
-            window.addEventListener('mousemove', (e) => {
-                let mouseX = e.clientX;
-                let mouseY = e.clientY;
+    setTimeout(() => {
+        window.addEventListener('mousemove', (e) => {
+
+            let mouseX = e.clientX;
+            let mouseY = e.clientY;
+
+            // WORK PAGE CURSOR INTERATION
+            if (caseListContainer && seeMoreTag && caseList.length > 0 && window.innerWidth > 991) {
 
                 gsap.to(seeMoreTag, {
                     left: mouseX + 10,
@@ -286,8 +290,66 @@ export function mainInit() {
                     delay: .01,
                     ease: 'power2.out'
                 });
-            });
-        }, 200);
+            }
+
+
+            // CONTACT PAGE BG MAP Interaction
+            const bgMap = document.querySelector('.contact_map_bg_container');
+            const bgMapDot = document.querySelector('.contact_map_bg_dot');
+
+            const bgMapInfoBox = document.querySelector('.location_info_container');
+
+            if (bgMap && bgMap && bgMapInfoBox && window.innerWidth > 991) {
+                let percentCap = 30;
+                let mouseXMapped = mouseX * percentCap / window.innerWidth - (percentCap / 2);
+                let mouseYMapped = mouseY * percentCap / window.innerHeight - (percentCap / 2);
+
+                gsap.to(bgMap, {
+                    x: () => {
+                        let xTranslate = window.innerWidth * mouseXMapped * .001;
+                        return xTranslate
+                    },
+                    y: () => {
+                        let yTranslate = window.innerHeight * mouseYMapped * .001;
+                        return yTranslate
+                    },
+                    duration: 0.6,
+                    ease: 'power1.out'
+                });
+
+                gsap.to(bgMapDot, {
+                    x: () => {
+                        let xTranslate = window.innerWidth * mouseXMapped * .001;
+                        return xTranslate
+                    },
+                    y: () => {
+                        let yTranslate = window.innerHeight * mouseYMapped * .001;
+                        return yTranslate
+                    },
+                    duration: 0.6,
+                    ease: 'power1.out'
+                });
+
+                gsap.to(bgMapInfoBox, {
+                    x: () => {
+                        let xTranslate = window.innerWidth * mouseXMapped * .0005;
+                        return xTranslate
+                    },
+                    y: () => {
+                        let yTranslate = window.innerHeight * mouseYMapped * .0005;
+                        return yTranslate
+                    },
+                    duration: 0.75,
+                    ease: 'power2.out'
+                });
+
+                // console.log(mouseXMapped);
+            }
+
+
+        });
+    }, 200);
+
     // Work Case Link Redirect (for case links in Homepage and Works)
     const workCaseLinks = document.querySelectorAll('.work_case_link');
     if (workCaseLinks.length > 0) {
