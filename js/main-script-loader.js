@@ -6,10 +6,12 @@ import { form } from './form.js';
 import { footerDate } from './footer-date.js';
 import { swiperInit } from './swiper.js';
 import { caseTransition } from './case-transition.js';
+import { homepageHeroTrail } from './homepage-hero-trail.js';
 
-console.log("v2 UPDATE TEST: This is coming from the main-script-loader.js");
+console.log("Loading main scripts loader");
 
 testScript();
+homepageHeroTrail();
 mainInit();
 homepage();
 navBarMenu();

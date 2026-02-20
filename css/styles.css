@@ -17,6 +17,14 @@
 /*
 *   HERO CONTENT
 */
+.hero_canvas_container {
+    width: 100vw;
+    height: 100svh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
 
 .section_hero_followup_content_card .for-living-display-text {
     transform: translate(-1rem, 0);
@@ -262,6 +270,36 @@
     width: 2.5rem;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
+}
+
+.hero-overlay-svg-mask {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6; /* Should be higher than .hero_image-plant-overlay-layer */
+}
+
+.hero_image-plant-overlay-layer {
+    mask: url(#heroCircleMask);
+    -webkit-mask: url(#heroCircleMask);
+}
+
+/* Only apply mask on mobile/tablet */
+@media screen and (max-width: 991px) {
+    .hero-overlay-svg-mask {
+        display: block;
+    }
+
+    .hero_image-plant-overlay-layer {
+        mask: url(#heroCircleMask);
+        -webkit-mask: url(#heroCircleMask);
+        opacity: 1;
+        mix-blend-mode: overlay;
+    }
 }
 
 
