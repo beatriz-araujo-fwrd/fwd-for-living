@@ -214,6 +214,30 @@
 }
 
 
+.blur-overlay::before {
+    left: 0;
+    -webkit-mask-image: linear-gradient(90deg, black 10%, transparent 80%);
+    mask-image: linear-gradient(90deg, black 10%, transparent 80%);
+}
+
+.blur-overlay::after {
+    right: 0;
+    -webkit-mask-image: linear-gradient(270deg, black 10%, transparent 80%);
+    mask-image: linear-gradient(270deg, black 10%, transparent 80%);
+}
+
+.blur-overlay::before,
+.blur-overlay::after {
+    content: "";
+    position: absolute;
+    z-index: 999;
+    height: 100%;
+    width: 2.5rem;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+
 /*
 *   RICH TEXT HEADINGS
 */

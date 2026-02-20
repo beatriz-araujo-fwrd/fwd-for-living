@@ -236,11 +236,14 @@ export function mainInit() {
                 currentX += direction * indexSpace * distanceToNextTag;
 
                 console.log("separated by ", indexSpace);
-                gsap.to(filterInner, {
-                    x: currentX,
-                    duration: .8,
-                    ease: 'power2.out'
-                });
+                // ruler slide animation on filter click
+                if (window.innerWidth > 767) {
+                    gsap.to(filterInner, {
+                        x: currentX,
+                        duration: .8,
+                        ease: 'power2.out'
+                    });
+                }
 
                 // update tag 'active' state visiblity
                 filterItems[activeIndex].querySelector('.tag').classList.remove("active");
