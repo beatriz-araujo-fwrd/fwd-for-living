@@ -190,6 +190,14 @@
     position: relative;
 }
 
+.gallery6_item-wrapper .gallery6_image {
+    transition: opacity .3s ease;
+}
+
+.gallery6_item-wrapper:hover .gallery6_image {
+    opacity: .75;
+}
+
 @media screen and (max-width: 991px) {
     .step-row.mobile-hidden {
         opacity: 0;
